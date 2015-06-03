@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <title>Workflow Demo</title>
+      <!-- assets installed via bower -->
+      <link rel="stylesheet" type="text/css" href="bower_components/foundation/css/foundation.min.css" />
+      <!-- assets as part of the workflow editor -->
+      <link rel="stylesheet" type="text/css" href="css/workflow.css" />
+  </head>
+  <body>
+
+      <!-- You need to create three elements to house the toolbox (Add Stage + Save buttons), the workspace (where you draw the shapes) and the editor (a form for editing details about a shape) -->
+      <!-- You will reference these below in the JavaScript -->
+      <div class="toolbox" id="toolbox"></div>
+      <div class="workspace" id="workspace"></div>
+      <div class="editor" id="editor"></div>
+
+      <!-- assets installed via bower -->
+      <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+      <script src="bower_components/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+      <script src="bower_components/jsPlumb/dist/js/jquery.jsPlumb-1.5.5-min.js" type="text/javascript"></script>
+      <script src="bower_components/mustache/mustache.min.js" type="text/javascript"></script>
+      <!-- assets as part of the workflow editor -->
+      <script src="js/workflow_templates.js" type="text/javascript"></script>
+      <script src="js/workflow.js" type="text/javascript"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+          workspace.initialize({
+            workspace: $('#workspace'), // jQuery object for the HTML element that you want to be the workspace - the area where you draw the shapes.
+            editor: $('#editor'), // jQuery object for the HTML element that you want to be the editor - the area where a form gets rendered to set the name and description of a stage/transition.
+            toolbox: $('#toolbox'), // jQuery object for the HTML element that you want to be the workspace - the area where the 'Add Stage' and 'Save' buttons get rendered.
+            save: function(workflow_json) { // A callback function that is called when you click the 'Save' button in the toolbox. workflow_json is the full JSON of the workflow. `this` refers to the workspace object. `this.toJSON()` will return the workflow in JSON form (i.e. not a string). `this.stage_list` will return all the stages. `this.transition_list` will return all the transitions.
+              // Below is an example, you can put AJAX or something here to save it.
+              console.log(JSON.stringify(workflow_json));
+              console.log(this);
+            }
+            // Uncomment/populate line below to provide initial data for the workflow editor to render.
+            //, initial_data: {"workflow":{"stage_list":[{"id":"stage446354","name":"Start","description":"This is the initial stage.","status":"OK","epTargetTopCenterUUID":"epTargetTopCenter-stage446354","epTargetBottomCenterUUID":"epTargetBottomCenter-stage446354","epTargetLeftMiddleUUID":"epTargetLeftMiddle-stage446354","epTargetRightMiddleUUID":"epTargetRightMiddle-stage446354","epSourceTopCenterUUID":"epSourceTopCenter-stage446354","epSourceBottomCenterUUID":"epSourceBottomCenter-stage446354","epSourceLeftMiddleUUID":"epSourceLeftMiddle-stage446354","epSourceRightMiddleUUID":"epSourceRightMiddle-stage446354","posX":360,"posY":20},{"id":"stage766857","name":"Referral","description":"Patient is referred to hospital.","status":"OK","epTargetTopCenterUUID":"epTargetTopCenter-stage766857","epTargetBottomCenterUUID":"epTargetBottomCenter-stage766857","epTargetLeftMiddleUUID":"epTargetLeftMiddle-stage766857","epTargetRightMiddleUUID":"epTargetRightMiddle-stage766857","epSourceTopCenterUUID":"epSourceTopCenter-stage766857","epSourceBottomCenterUUID":"epSourceBottomCenter-stage766857","epSourceLeftMiddleUUID":"epSourceLeftMiddle-stage766857","epSourceRightMiddleUUID":"epSourceRightMiddle-stage766857","posX":360,"posY":160},{"id":"stage350827","name":"End","description":"This is the final stage.","status":"OK","epTargetTopCenterUUID":"epTargetTopCenter-stage350827","epTargetBottomCenterUUID":"epTargetBottomCenter-stage350827","epTargetLeftMiddleUUID":"epTargetLeftMiddle-stage350827","epTargetRightMiddleUUID":"epTargetRightMiddle-stage350827","epSourceTopCenterUUID":"epSourceTopCenter-stage350827","epSourceBottomCenterUUID":"epSourceBottomCenter-stage350827","epSourceLeftMiddleUUID":"epSourceLeftMiddle-stage350827","epSourceRightMiddleUUID":"epSourceRightMiddle-stage350827","posX":360,"posY":480},{"id":"stage402170","name":"Consultation","description":"The patient is being consulted.","status":"OK","epTargetTopCenterUUID":"epTargetTopCenter-stage402170","epTargetBottomCenterUUID":"epTargetBottomCenter-stage402170","epTargetLeftMiddleUUID":"epTargetLeftMiddle-stage402170","epTargetRightMiddleUUID":"epTargetRightMiddle-stage402170","epSourceTopCenterUUID":"epSourceTopCenter-stage402170","epSourceBottomCenterUUID":"epSourceBottomCenter-stage402170","epSourceLeftMiddleUUID":"epSourceLeftMiddle-stage402170","epSourceRightMiddleUUID":"epSourceRightMiddle-stage402170","posX":360,"posY":360}],"transition_list":[{"id":"con_75","name":"Begin","description":"This transition always fires automatically.","sourceStageId":"stage446354","targetStageId":"stage766857","sourceEndpoint":"epSourceBottomCenter-stage446354","targetEndpoint":"epTargetTopCenter-stage766857","reassignmentType":"current_user","reassignmentGroup":"","reassignmentUser":""},{"id":"con_83","name":"Requires Consultation","description":"This patient requires a consultation, send them to a doctor.","sourceStageId":"stage766857","targetStageId":"stage402170","sourceEndpoint":"epSourceBottomCenter-stage766857","targetEndpoint":"epTargetTopCenter-stage402170","reassignmentGroup":"","reassignmentUser":""},{"id":"con_91","name":"Consultation Complete","description":"Consultation has been carried out. Send patient home.","sourceStageId":"stage402170","targetStageId":"stage350827","sourceEndpoint":"epSourceBottomCenter-stage402170","targetEndpoint":"epTargetTopCenter-stage350827","reassignmentGroup":"","reassignmentUser":""},{"id":"con_99","name":"No Consultation Required","description":"This patient doesnt require a consultation.","sourceStageId":"stage766857","targetStageId":"stage350827","sourceEndpoint":"epSourceRightMiddle-stage766857","targetEndpoint":"epTargetRightMiddle-stage350827","reassignmentGroup":"","reassignmentUser":""}]}}
+          });
+        });
+      </script>
+
+  </body>
+</html>

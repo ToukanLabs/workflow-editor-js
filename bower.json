@@ -1,0 +1,12 @@
+{
+  "name": "workflow",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-ui": "~1.10.4",
+    "jquery-ui-touch-punch": "*",
+    "jsPlumb": "~1.5.5",
+    "mustache": "~2.0.0",
+    "foundation": "~5.5.2"
+  }
+}
