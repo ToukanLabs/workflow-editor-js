@@ -51,6 +51,7 @@ section[role='main'] {
   min-width: 120px;
   max-width: 120px;
   color: white;
+  min-height: 60px
 }
 
 #workspace .stage.editing {
@@ -65,10 +66,6 @@ section[role='main'] {
   display: block;
   margin-bottom: 25px;
   margin-top: 5px;
-}
-
-#workspace {
-  padding: 0 2% 0 2%;
 }
 
 #workspaceColumn {
