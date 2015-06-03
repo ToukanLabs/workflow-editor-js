@@ -1,31 +1,3 @@
-/* Generic styles */
-
-.inline {
-  display: inline;
-}
-
-pre.long-text {
-  font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
-  line-height: 16px;
-  font-size: 16px;
-  white-space: pre-wrap;
-}
-
-ul.errorlist {
-  list-style: none;
-  color: red;
-  margin-bottom: 0;
-  margin-left: 0;
-}
-
-section[role='main'] {
-  min-height: 500px;
-}
-
-.label {
-  font-size: 14px;
-}
-
 /* Workflow editor styles */
 
 #workspace {
